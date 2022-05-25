@@ -52,7 +52,7 @@ function InputAdditionModal({ filedUi, isOpenModal, closeModal }: Props) {
                 </Dialog.Title>
 
                 <div className="my-4">
-                  <InputAdditionForm />
+                  <InputAdditionForm closeModal={closeModal} />
                 </div>
               </Dialog.Panel>
             </Transition.Child>

@@ -4,27 +4,33 @@ import * as yup from 'yup';
 import { InputText } from '../FormInputs/InputText';
 import { Button } from '../FormInputs/Button';
 import { requiredMsg } from '../../utils/formMessages';
+import { FieldUi } from '../../models/FieldUi';
+
+interface Props {
+  closeModal: () => void;
+}
 
 interface FormFields {
   label: string;
   placeholder: string;
 }
 
-const schema = yup
+const formSchemaValidators = yup
   .object({
     label: yup.string().required(requiredMsg('Label')).trim(),
     placeholder: yup.string().required(requiredMsg('Placeholder')).lowercase().trim(),
   })
   .required();
 
-function InputTextAdditionForm() {
+function InputTextAdditionForm({ closeModal }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>({ resolver: yupResolver(schema) });
+  } = useForm<FormFields>({ resolver: yupResolver(formSchemaValidators) });
 
   const handleOnSubmitForm: SubmitHandler<FormFields> = data => {
+    closeModal();
     console.log(data);
   };
 
