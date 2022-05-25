@@ -7,6 +7,8 @@ function DynamicFormView() {
         <Icon icon="fluent:form-20-regular" />
         <h2 className="font-semibold text-slate-800">Mi formulario</h2>
       </div>
+
+      <p className="mt-2 text-gray-600">Formulario vacío</p>
     </div>
   );
 }
