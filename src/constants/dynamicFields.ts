@@ -14,7 +14,7 @@ export const fields: FieldUi[] = [
     htmlInputAttrs: { default: '', options: [''] },
   },
   {
-    id: 'radiogroup',
+    id: 'radio',
     name: 'Opciones',
     icon: 'carbon:radio-button-checked',
     htmlInputAttrs: { options: [''] },

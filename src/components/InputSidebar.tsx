@@ -14,7 +14,7 @@ function InputSidebar() {
       </p>
       <div className="mt-2 divide-y-2 divide-gray-100">
         {fields.map(field => (
-          <InputSidebarItem {...field} />
+          <InputSidebarItem key={field.id} {...field} />
         ))}
       </div>
     </aside>

@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Icon } from '@iconify/react';
 import { FieldUi } from '../models/FieldUi';
+import { useGetInputAdditionForm } from '../hooks/useGetInputAdditionForm';
 
 interface Props {
   filedUi: FieldUi;
@@ -10,7 +11,8 @@ interface Props {
 }
 
 function InputAdditionModal({ filedUi, isOpenModal, closeModal }: Props) {
-  const { icon, name } = filedUi;
+  const { icon, name, id } = filedUi;
+  const { InputAdditionForm } = useGetInputAdditionForm(id);
 
   return (
     <Transition appear show={isOpenModal} as={Fragment}>
@@ -38,7 +40,7 @@ function InputAdditionModal({ filedUi, isOpenModal, closeModal }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-lg transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title as="h3" className="leading-6 text-gray-900">
                   <div className="flex items-center space-x-2 border-b-2 border-gray-200 pb-2 text-2xl font-bold">
                     <Icon icon={icon}></Icon>
@@ -49,15 +51,17 @@ function InputAdditionModal({ filedUi, isOpenModal, closeModal }: Props) {
                   </p>
                 </Dialog.Title>
 
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={() => closeModal()}
-                  >
-                    Añadir campo
-                  </button>
+                <div className="my-4">
+                  <InputAdditionForm />
                 </div>
+
+                <button
+                  type="button"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                  onClick={() => closeModal()}
+                >
+                  Añadir campo
+                </button>
               </Dialog.Panel>
             </Transition.Child>
           </div>
